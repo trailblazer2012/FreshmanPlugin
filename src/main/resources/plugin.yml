@@ -1,0 +1,9 @@
+name: FreshmanPlugin
+version: 1.0
+main: tb.personal.FreshmanPlugin.FreshmanPlugin
+api-version: 1.13
+commands:
+  Wizard:
+    description: Your description
+    usage: /Wizard [add/remove]
+    permission: yourplugin.yourcommandpermissi
