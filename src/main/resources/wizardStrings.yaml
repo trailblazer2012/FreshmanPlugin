@@ -1,0 +1,10 @@
+!!tb.personal.FreshmanPlugin.InformationResource
+pluginName: "Wizard"
+infoText:
+  infoName:
+    wizardWandRecipe: "Wizard Wand"
+
+  infoDescription:
+    wizardWandRecipe: "휘두르기 좋은 빛이 나는 나뭇가지. 사용할 수 있는 마법이 적지만, 조합을 통해 강해질 수 있다."
+
+infoMessage:

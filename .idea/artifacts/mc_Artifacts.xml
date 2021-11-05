@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="mc Artifacts">
+    <output-path>$USER_HOME$/Documents/mc_server/FreshmanServer/plugins</output-path>
+    <root id="archive" name="mc Artifacts.jar">
+      <element id="module-output" name="TbPlugin.main" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/wizardStrings.yaml" />
+    </root>
+  </artifact>
+</component>
