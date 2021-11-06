@@ -1,5 +1,6 @@
 package tb.personal.FreshmanPlugin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -8,6 +9,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
@@ -28,10 +30,12 @@ import static org.bukkit.Bukkit.getServer;
 
 public class FreshmanEventHandler implements Listener{
     JavaPlugin plugin;
+    InformationResource informationResource;
     Map<Player, Location> playerLocationMap;    //for saving player's position  e.g. respawn compass
 
-    public FreshmanEventHandler(JavaPlugin plugin) {
+    public FreshmanEventHandler(JavaPlugin plugin, InformationResource informationResource) {
         this.plugin = plugin;
+        this.informationResource = informationResource;
         playerLocationMap = new HashMap<>();
     }
 
@@ -77,22 +81,33 @@ public class FreshmanEventHandler implements Listener{
         player.sendMessage(ChatColor.AQUA + playerLocationMap.get(player).toString());
     }
 
-    /* this part is for Wizard Plugin */
+
+    /* -------------this part is for Wizard Plugin------------- */
+    /* -------------------------------------------------------- */
+    /* -------------------------------------------------------- */
+
     @EventHandler
     public void onPlayerUse(@NotNull PlayerInteractEvent event){
         Player player = event.getPlayer();
-
         ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
+        String wandName = "";
+
         if (itemInMainHand.hasItemMeta()) {
             ItemMeta itemMeta = itemInMainHand.getItemMeta();
             List<String> lore = itemMeta.getLore();
+            if (lore != null){
+                wandName = lore.get(lore.size() - 1);
+            }
+        }
+        else {
+            return;
+        }
 
-            if (lore == null){
-                player.sendMessage("Test");
-            }
-            else if (lore.contains("wizardWand")) {
-                player.sendMessage(ChatColor.GOLD +"nice job!");
-            }
+        //if player used wand
+        if (event.getAction()== Action.RIGHT_CLICK_AIR && WizardRecipe.recipeMap.containsKey(wandName)){
+            Bukkit.getConsoleSender().sendMessage( ChatColor.AQUA + WizardRecipe.recipeMap.toString());
+            Bukkit.getConsoleSender().sendMessage( ChatColor.AQUA + wandName);
+            WizardRecipe.wands.get(wandName).castSpell(player);
         }
     }
 }

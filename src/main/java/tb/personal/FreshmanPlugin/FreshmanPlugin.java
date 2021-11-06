@@ -31,11 +31,12 @@ public class FreshmanPlugin extends JavaPlugin{
         consol.sendMessage( informationResource.toString());
         consol.sendMessage( ChatColor.AQUA + "[플러그인 활성화 중 입니다.]- 4step");
 
-        getServer().getPluginManager().registerEvents(new FreshmanEventHandler(this), this);
+        getServer().getPluginManager().registerEvents(new FreshmanEventHandler(this, informationResource), this);
         consol.sendMessage( ChatColor.AQUA + "[플러그인 활성화 중 입니다.]- 5step");
         this.wizardRecipe = new WizardRecipe(this, informationResource);
         Objects.requireNonNull(this.getCommand("Wizard")).setExecutor(new WizardCommandExecutor(this, wizardRecipe));
         consol.sendMessage( ChatColor.AQUA + "[플러그인 활성화 중 입니다.]- 성공!");
+        consol.sendMessage(informationResource.infoText.infoDescription.wizardWandRecipe);
     }
 
     @Override
