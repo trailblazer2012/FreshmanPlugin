@@ -4,6 +4,6 @@ main: tb.personal.FreshmanPlugin.FreshmanPlugin
 api-version: 1.13
 commands:
   Wizard:
-    description: Your description
+    description: command for WIZARD settings including enabling recipes.
     usage: /Wizard [add/remove] [wand namespace/all]
     permission: op
